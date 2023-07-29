@@ -1,13 +1,10 @@
 from django.core.mail import send_mail
 from django.views.generic import CreateView
-from django.views import View
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
-from django.http import JsonResponse
 from .models import InfoRequest
 from .serializer import InfoRequestSerializer
 from .forms import InfoRequestForm
 from django.views.generic import TemplateView
-from django.views.decorators.csrf import csrf_exempt
 
 
 class InfoRequestList(ListAPIView):
