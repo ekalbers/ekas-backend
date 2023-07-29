@@ -24,6 +24,7 @@ env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     ALLOWED_ORIGINS=(list, []),
     CSRF_TRUSTED_ORIGINS=(list, []),
+    CSRF_COOKIE_DOMAIN=(list, []),
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
     DATABASE_USER=(str, ""),
@@ -186,6 +187,7 @@ REST_FRAMEWORK = {
 }
 
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+CSRF_COOKIE_DOMAIN = env.list("CSRF_COOKIE_DOMAIN")
 CSRF_HEADER_NAME = 'X-CSRFToken'
 
 CORS_ORIGIN_WHITELIST = env.list("CSRF_TRUSTED_ORIGINS")
