@@ -5,6 +5,7 @@ from .models import InfoRequest
 from .serializer import InfoRequestSerializer
 from .forms import InfoRequestForm
 from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_exempt
 
 
 class InfoRequestList(ListAPIView):
@@ -17,6 +18,7 @@ class InfoRequestDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = InfoRequestSerializer
 
 
+# @csrf_exempt
 class InfoRequestCreate(CreateView):
     model = InfoRequest
     form_class = InfoRequestForm
