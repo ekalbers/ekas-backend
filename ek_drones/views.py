@@ -1,10 +1,8 @@
 from django.core.mail import send_mail
-from django.views.generic import CreateView
-from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
 from .models import InfoRequest
 from .serializer import InfoRequestSerializer
-from .forms import InfoRequestForm
-from django.views.generic import TemplateView
+from rest_framework.response import Response
 
 
 class InfoRequestList(ListAPIView):
@@ -17,27 +15,24 @@ class InfoRequestDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = InfoRequestSerializer
 
 
-class InfoRequestCreate(CreateView):
-    model = InfoRequest
-    form_class = InfoRequestForm
-    success_url = 'success'
+class InfoRequestCreateView(CreateAPIView):
+    queryset = InfoRequest.objects.all()
+    serializer_class = InfoRequestSerializer
 
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        company = form.cleaned_data['company']
-        email = form.cleaned_data['email']
-        phone = form.cleaned_data['phone']
-        message = form.cleaned_data['message']
+    def perform_create(self, serializer):
+        # Save the InfoRequest object
+        instance = serializer.save()
 
-        subject = f'{name} from {company}'
-        message = f'email: {email}\nphone: {phone}\n\n{message}'
-        from_email = 'inforequest@ekaerialsolutions.com'
-        recipient_list = ['ethan@ekaerialsolutions.com']
+        # Send an email with the new InfoRequest data
+        subject = f'{instance.name} from {instance.company}'
+        message = f'Email: {instance.email}\n' \
+                  f'Phone: {instance.phone}\n' \
+                  f'Message: {instance.message}'
+        from_email = 'ethan@ekaerialsolutions.com'  # Replace this with your email address
+        recipient_list = ['info@ekaerialsolutions.com']  # Replace this with your recipient email address(es)
 
-        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+        send_mail(subject, message, from_email, recipient_list, fail_silently=True)
 
-        return super().form_valid(form)
+        # Optionally, you can also return a custom response after the object is created
+        return Response(serializer.data, status=201)
 
-
-class SuccessView(TemplateView):
-    template_name = 'success.html'
