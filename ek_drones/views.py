@@ -15,7 +15,7 @@ class InfoRequestDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = InfoRequestSerializer
 
 
-class InfoRequestCreateView(CreateAPIView):
+class InfoRequestCreate(CreateAPIView):
     queryset = InfoRequest.objects.all()
     serializer_class = InfoRequestSerializer
 
