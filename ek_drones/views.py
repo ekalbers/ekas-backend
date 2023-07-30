@@ -17,7 +17,7 @@ class InfoRequestDetail(RetrieveUpdateDestroyAPIView):
     queryset = InfoRequest.objects.all()
     serializer_class = InfoRequestSerializer
 
-
+@csrf_exempt
 class InfoRequestCreate(CreateView):
     model = InfoRequest
     form_class = InfoRequestForm
