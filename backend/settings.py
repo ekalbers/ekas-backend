@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'ek_drones',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -170,6 +171,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ],
 }
 
 # CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")

@@ -3,6 +3,7 @@ from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, C
 from .models import InfoRequest
 from .serializer import InfoRequestSerializer
 from rest_framework.response import Response
+from rest_framework import permissions
 
 
 class InfoRequestList(ListAPIView):
@@ -18,6 +19,7 @@ class InfoRequestDetail(RetrieveUpdateDestroyAPIView):
 class InfoRequestCreate(CreateAPIView):
     queryset = InfoRequest.objects.all()
     serializer_class = InfoRequestSerializer
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         # Save the InfoRequest object
