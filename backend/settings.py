@@ -66,7 +66,6 @@ INSTALLED_APPS = [
     'ek_drones',
     'rest_framework',
     'corsheaders',
-    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -171,18 +170,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # ],
 }
 
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
-CSRF_COOKIE_DOMAIN = env.str("CSRF_COOKIE_DOMAIN")
-
-CORS_ORIGIN_WHITELIST = env.list("CSRF_TRUSTED_ORIGINS")
-CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_HEADERS = [
-    'Content-Type',
-    'X-CSRFToken',
-]
+# CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+# CSRF_COOKIE_DOMAIN = env.str("CSRF_COOKIE_DOMAIN")
+#
+# CORS_ORIGIN_WHITELIST = env.list("CSRF_TRUSTED_ORIGINS")
+# CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_HEADERS = [
+#     'Content-Type',
+#     'X-CSRFToken',
+# ]
