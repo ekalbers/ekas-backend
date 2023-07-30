@@ -71,8 +71,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -100,20 +100,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": env.str("DATABASE_ENGINE"),
-#         "NAME": env.str("DATABASE_NAME"),
-#         "USER": env.str("DATABASE_USER"),
-#         "PASSWORD": env.str("DATABASE_PASSWORD"),
-#         "HOST": env.str("DATABASE_HOST"),
-#         "PORT": env.int("DATABASE_PORT"),
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -187,7 +173,7 @@ REST_FRAMEWORK = {
 }
 
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
-CSRF_COOKIE_DOMAIN = env.list("CSRF_COOKIE_DOMAIN")
+CSRF_COOKIE_DOMAIN = 'localhost'
 
 CORS_ORIGIN_WHITELIST = env.list("CSRF_TRUSTED_ORIGINS")
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
